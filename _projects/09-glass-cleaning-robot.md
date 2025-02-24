@@ -5,17 +5,25 @@ image: https://raw.githubusercontent.com/vishnumandala/Development-of-an-Autonom
 description: Designed and implemented a 2-DOF autonomous robot with custom PCB design, PID control system, and real-time trajectory optimization, achieving 95% accuracy in autonomous navigation and task execution.
 ---
 
+<a href="{{ site.baseurl }}/projects/" class="back-button" style="display: inline-block; margin-bottom: 20px; text-decoration: none; color: inherit;">
+    <i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Back to Projects
+</a>
+
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h1 style="margin: 0;"><strong>Development of an Autonomous Robot with Advanced Control Systems</strong></h1>
     <a href="https://github.com/vishnumandala/Development-of-an-Autonomous-Robot" 
+        class="github-link"
        style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;">
         <i class="fab fa-github fa-2x" style="color: #333333; transition: color 0.3s ease;"></i>
         <style>
             a:hover {
                 background-color: #333333 !important;
             }
-            a:hover i {
+            .github-link:hover i {
                 color: #ffffff !important;
+            }
+            .back-button:hover {
+                background-color: transparent !important;
             }
         </style>
     </a>

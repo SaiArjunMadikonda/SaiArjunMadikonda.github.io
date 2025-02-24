@@ -12,13 +12,14 @@ description: Enhanced Bi-Directional RRT* with Artificial Potential Field for ef
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h1 style="margin: 0;"><strong>Improved Bi-directional RRT* for Robot Path Planning</strong></h1>
     <a href="https://github.com/vishnumandala/Improved-Bi-directional-RRT-Algorithm-for-Robot-Path-Planning-" 
+        class="github-link"
        style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;">
         <i class="fab fa-github fa-2x" style="color: #333333; transition: color 0.3s ease;"></i>
         <style>
             a:hover {
                 background-color: #333333 !important;
             }
-            a:hover i {
+            .github-link:hover i {
                 color: #ffffff !important;
             }
             .back-button:hover {

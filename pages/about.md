@@ -227,7 +227,7 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
 .tech-category h2 {
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: var(--text-primary, #2c3e50);
+    color: inherit;
     font-weight: 600;
 }
 
@@ -273,7 +273,7 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
     bottom: -20px;
     opacity: 0;
     font-size: 0.9rem;
-    color: var(--text-secondary, #718096);
+    color: inherit;
     font-family: inherit;
     transition: opacity 0.3s ease;
 }
@@ -283,7 +283,7 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
 }
 
 .tech-description {
-    color: var(--text-secondary, #718096);
+    color: inherit;
     font-size: 1rem;
     max-width: 600px;
     margin: 0 auto;
@@ -291,12 +291,24 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
 }
 
 @media (prefers-color-scheme: dark) {
+    /* Increase brightness or invert colors for better visibility */
+    img[alt="ROS/ROS2"],
+    img[alt="Photoshop"],
+    img[alt="Pandas"],
+    img[alt="Bash"],
+    img[alt="ANSYS"] {
+        filter: brightness(1.8) contrast(1.2); /* Adjust brightness & contrast */
+    }
+}
+
+
+@media (prefers-color-scheme: dark) {
     .tech-category h2 {
-        color: var(--text-primary-dark, #e0e0e0);
+        color: inherit;
     }
     .tech-name,
     .tech-description {
-        color: var(--text-secondary-dark, #a0a0a0);
+        color: inherit;
     }
 }
 
@@ -312,44 +324,8 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
 }
 </style>
 
-# Experience
+# Timeline
 
 <div class="row">
 {% include about/timeline.html %}
 </div>
-
-# Education
-
-## Master of Engineering in Robotics
-**University of Maryland, College Park** _(Jan 2023 - Dec 2024)_  
-GPA: 3.91/4.0
-
-**Key Coursework:**
-- Perception and Planning for Autonomous Robots
-- Robot Modeling and Controls
-- AI and Deep Learning
-- Reinforcement Learning
-- Manufacturing Robotic Systems
-- Rehabilitation Robotics
-
-## Bachelor of Technology in Mechatronics
-**Mahatma Gandhi Institute of Technology** _(Jul 2018 - Jul 2022)_  
-GPA: 7.84/10
-
-**Key Coursework:**
-- Robotics and Automation
-- CAD/CAM
-- Motion Control Design
-- Microprocessors and Microcontrollers
-- Fundamentals of IoT
-- MEMS and Material Science
-- Automotive and Manufacturing Processes
-
-# Technical Expertise
-- **Programming**: Python, C++, C, Bash, JavaScript, HTML/CSS, Kotlin
-- **Robotics & Control**: ROS1/ROS2 (MoveIt, RViz, Gazebo, URDF), SLAM, PID, Kalman Filtering, System Modeling, CARLA
-- **AI & ML**: YOLO, Reinforcement/Transfer Learning, CNN/RNN, Supervised/Unsupervised Learning, Clustering, PCA
-- **Tools & Platforms**: Git, Linux, Docker, Jupyter Notebook, CMake, Raspberry Pi, Arduino IDE
-- **Frameworks & Libraries**: PyTorch, TensorFlow, Keras, OpenCV, scikit-learn, NumPy, pandas, Matplotlib
-- **CAD & Simulation**: SolidWorks, MATLAB/Simulink, ANSYS, Autodesk Inventor, Creo, AutoCAD
-- **Sensor & Embedded**: LIDAR, Depth Cameras, RGB-D Sensors, IMU, Encoders, Ultrasonic Sensors, PCB Design

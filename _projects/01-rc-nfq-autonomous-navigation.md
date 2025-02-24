@@ -11,14 +11,15 @@ description: Enhanced RC-NFQ (Regularized Convolutional Neural Fitted Q-Iteratio
 
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h1 style="margin: 0;"><strong>RC-NFQ Algorithm for Autonomous Navigation</strong></h1>
-    <a href="https://github.com/vishnumandala/Development-and-Evaluation-of-RC-NFQ-Algorithm-for-Autonomous-Navigation" 
+    <a href="https://github.com/vishnumandala/Development-and-Evaluation-of-RC-NFQ-Algorithm-for-Autonomous-Navigation"
+        class="github-link"
        style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;">
         <i class="fab fa-github fa-2x" style="color: #333333; transition: color 0.3s ease;"></i>
         <style>
             a:hover {
                 background-color: #333333 !important;
             }
-            a:hover i {
+            .github-link:hover i {
                 color: #ffffff !important;
             }
             .back-button:hover {

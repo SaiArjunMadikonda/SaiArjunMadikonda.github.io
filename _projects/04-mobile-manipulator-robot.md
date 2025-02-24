@@ -12,13 +12,14 @@ description: 6-DOF mobile manipulator with optimized chassis design and steerabl
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h1 style="margin: 0;"><strong>Mobile Manipulator Robot Design & Control</strong></h1>
     <a href="https://github.com/vishnumandala/Mobile-Manipulator-Robot-Design-and-Simulation-Project" 
-       style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;" class="back-button">
+        class="github-link"
+       style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;">
         <i class="fab fa-github fa-2x" style="color: #333333; transition: color 0.3s ease;"></i>
         <style>
             a:hover {
                 background-color: #333333 !important;
             }
-            a:hover i {
+            .github-link:hover i {
                 color: #ffffff !important;
             }
             .back-button:hover {

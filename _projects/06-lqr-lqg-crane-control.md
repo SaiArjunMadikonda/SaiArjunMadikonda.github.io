@@ -5,17 +5,25 @@ image: https://raw.githubusercontent.com/vishnumandala/Design-and-Implementation
 description: Advanced control system for dual-suspended load crane achieving 30% oscillation reduction and 98% trajectory tracking accuracy.
 ---
 
+<a href="{{ site.baseurl }}/projects/" class="back-button" style="display: inline-block; margin-bottom: 20px; text-decoration: none; color: inherit;">
+    <i class="fas fa-arrow-left" style="margin-right: 5px;"></i> Back to Projects
+</a>
+
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
     <h1 style="margin: 0;"><strong>LQR and LQG Controllers for Dual-Load Crane System</strong></h1>
     <a href="https://github.com/vishnumandala/Design-and-Implementation-of-LQR-and-LQG-Controllers-for-a-Crane-System" 
+        class="github-link"
        style="text-decoration: none; background-color: #f5f5f5; padding: 10px 15px; border-radius: 8px; transition: all 0.3s ease;">
         <i class="fab fa-github fa-2x" style="color: #333333; transition: color 0.3s ease;"></i>
         <style>
             a:hover {
                 background-color: #333333 !important;
             }
-            a:hover i {
+            .github-link:hover i {
                 color: #ffffff !important;
+            }
+            .back-button:hover {
+                background-color: transparent !important;
             }
         </style>
     </a>
