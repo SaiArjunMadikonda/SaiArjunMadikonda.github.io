@@ -1,0 +1,32 @@
+<div class="row justify-content-center align-items-center p-4">
+  <div class="col-lg-6 col-md-8 text-center mt-5 mx-auto">
+    <!-- Centered & Responsive Avatar -->
+    <div class="d-flex justify-content-center">
+      <div class="avatar-container" style="width: 100%; max-width: 540px; height: auto; display: flex; justify-content: center; align-items: center;">
+        {% if site.author.image %}
+          <img class="img-fluid rounded-circle shadow-lg mx-auto" src="profile.jpg" alt="{{ site.title }}" style="width: 100%; height: auto; object-fit: cover;">
+        {% else %}
+          <img class="img-fluid rounded-circle shadow-lg mx-auto" src="https://ui-avatars.com/api/?name={{ site.title }}&background=random" alt="{{ site.title }}" style="width: 100%; height: auto; object-fit: cover;">
+        {% endif %}
+      </div>
+    </div>
+
+    <p class="text-muted wow animated slideInUp mt-4" data-wow-delay=".15s">{{ site.description }}</p>
+
+    <!-- Social Media Buttons -->
+    <div class="mt-4 d-flex justify-content-center" style="gap: 2rem;">
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://drive.google.com/file/d/1-1vvEHxE5sBLgXJiJN1iqoJ_jYgGWL1U/view?usp=sharing" onmouseover="this.style.backgroundColor='#FF0000';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+        <i class="fas fa-file-pdf" style="margin-right: 8px;"></i>
+        Resume
+      </a>
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://github.com/vishnumandala" onmouseover="this.style.backgroundColor='#333333';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+        <i class="fab fa-github" style="margin-right: 8px;"></i>
+        GitHub
+      </a>
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://www.linkedin.com/in/vishnumandala" onmouseover="this.style.backgroundColor='#0077B5';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+        <i class="fab fa-linkedin-in" style="margin-right: 8px;"></i>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</div>
