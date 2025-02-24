@@ -45,6 +45,11 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
                 <span class="tech-name">MATLAB</span>
             </div>
             <div class="tech-item">
+                <img src="https://img.icons8.com/?size=100&id=yqf95864UzeQ&format=png&color=000000" 
+                alt="CUDA">
+                <span class="tech-name">CUDA</span>
+            </div>
+            <div class="tech-item">
                 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original.svg" alt="Kotlin">
                 <span class="tech-name">Kotlin</span>
             </div>
@@ -122,7 +127,7 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
                 <span class="tech-name">Photoshop</span>
             </div>
             <div class="tech-item">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/2702/2702602.svg" alt="Google Workspace">
+                <img src="https://img.icons8.com/?size=100&id=17949&format=png&color=000000" alt="Google Workspace">
                 <span class="tech-name">Google Workspace</span>
             </div>
             <div class="tech-item">
@@ -180,11 +185,11 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
         <h2>CAD & Simulation</h2>
         <div class="tech-icons">
             <div class="tech-item">
-                <img src="https://www.svgrepo.com/show/452122/solidworks.svg" alt="SolidWorks">
+                <img src="https://img.icons8.com/?size=100&id=62397&format=png&color=000000" alt="SolidWorks">
                 <span class="tech-name">SolidWorks</span>
             </div>
             <div class="tech-item">
-                <img src="https://www.svgrepo.com/show/448188/ansys.svg" alt="ANSYS">
+                <img src="https://img.icons8.com/?size=100&id=zoQNykk0EzrK&format=png&color=000000" alt="ANSYS">
                 <span class="tech-name">ANSYS</span>
             </div>
             <div class="tech-item">
@@ -192,15 +197,15 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
                 <span class="tech-name">Fusion 360</span>
             </div>
             <div class="tech-item">
-                <img src="https://www.svgrepo.com/show/448165/autocad.svg" alt="AutoCAD">
+                <img src="https://seeklogo.com/images/A/autocad-logo-69326D7728-seeklogo.com.png" alt="AutoCAD">
                 <span class="tech-name">AutoCAD</span>
             </div>
             <div class="tech-item">
-                <img src="https://img.icons8.com/color/480/ptc-creo.png" alt="Creo">
+                <img src="https://img.icons8.com/?size=100&id=nHO01oOdNoK4&format=png&color=000000" alt="Creo">
                 <span class="tech-name">Creo</span>
             </div>
             <div class="tech-item">
-                <img src="https://www.svgrepo.com/show/7433403/autodesk-inventor.svg" alt="Inventor">
+                <img src="https://cdn.freelogovectors.net/wp-content/uploads/2023/05/inventor_logo_autodesk-freelogovectors.net_.png" alt="Inventor">
                 <span class="tech-name">Inventor</span>
             </div>
         </div>
