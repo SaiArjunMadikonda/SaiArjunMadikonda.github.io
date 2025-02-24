@@ -248,7 +248,7 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
 .tech-item img {
     width: 50px;
     height: 50px;
-    opacity: 0.7;
+    opacity: 0.65;
     transition: all 0.3s ease;
 }
 
