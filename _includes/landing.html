@@ -198,6 +198,64 @@ html {
     pointer-events: none;
 }
 
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px; /* Adds depth */
+  width: 100%;
+  max-width: 350px; /* Ensures full size */
+  height: auto;
+  animation: fadeInZoom 1.2s ease-out, float 5s infinite ease-in-out;
+}
+
+/* Avatar Image */
+.avatar-container img {
+  width: 100%;
+  max-width: 100%; /* Ensures it doesn't shrink */
+  height: auto;
+  border-radius: 50%;
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-in-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Entrance animation */
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Floating effect */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Subtle Glow & Depth on Hover */
+.avatar-container img:hover {
+  box-shadow: 0px 15px 45px rgba(255, 255, 255, 0.3);
+}
+
+/* Remove Scale on Hover */
+.avatar-container img:hover {
+  transform: rotateX(10deg) rotateY(10deg);
+}
+
+
 </style>
 
 <script>
@@ -258,6 +316,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const computedStyle = window.getComputedStyle(descriptionText);
         scrollArrow.style.color = computedStyle.color;
     }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const avatar = document.querySelector(".avatar-container img");
+
+  avatar.addEventListener("mousemove", (e) => {
+    const { offsetX, offsetY, target } = e;
+    const { offsetWidth, offsetHeight } = target;
+    const xRotation = ((offsetY - offsetHeight / 2) / offsetHeight) * 10; // Smoother tilt
+    const yRotation = ((offsetX - offsetWidth / 2) / offsetWidth) * 10;
+
+    target.style.transform = `rotateX(${xRotation}deg) rotateY(${yRotation}deg)`;
+  });
+
+  avatar.addEventListener("mouseleave", () => {
+    avatar.style.transform = "rotateX(0) rotateY(0)";
+  });
 });
 
 
