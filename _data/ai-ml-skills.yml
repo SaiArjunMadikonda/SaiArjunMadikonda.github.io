@@ -1,0 +1,23 @@
+- name: YOLO (Object Detection)
+  percentage: 90
+  color: success
+
+- name: Reinforcement Learning
+  percentage: 85
+  color: info
+
+- name: CNN/RNN
+  percentage: 85
+  color: primary
+
+- name: Supervised Learning
+  percentage: 80
+  color: warning
+
+- name: Unsupervised Learning
+  percentage: 75
+  color: secondary
+
+- name: OpenCV
+  percentage: 85
+  color: warning

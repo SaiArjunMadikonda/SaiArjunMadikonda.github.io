@@ -1,23 +1,23 @@
 - name: Python
   percentage: 95
-  color: info
-
-- name: C++/C
-  percentage: 90
-  color: danger
-
-- name: ROS/ROS2
-  percentage: 95
   color: success
 
-- name: PyTorch/TensorFlow
+- name: C++
   percentage: 90
-  color: warning
+  color: info
 
-- name: Computer Vision
+- name: C
   percentage: 85
   color: primary
 
-- name: Robot Control
-  percentage: 90
-  color: secondary
+- name: CUDA
+  percentage: 80
+  color: warning
+
+- name: JavaScript
+  percentage: 75
+  color: dark
+
+- name: HTML/CSS
+  percentage: 85
+  color: info

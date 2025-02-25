@@ -6,9 +6,7 @@
     </small>
   
     <!-- Show Social Links on all pages EXCEPT the Landing Page -->
-    {% unless page.url == '/' %}
-      {% include social.html %}
-    {% endunless %}
+    {% include social.html %}
   
     {%- assign theme_name = "portfolYOU" -%}
     {%- assign theme_repo = "https://github.com/yousinix/portfolYOU" -%}

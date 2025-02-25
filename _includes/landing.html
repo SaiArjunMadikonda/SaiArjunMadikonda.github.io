@@ -37,6 +37,11 @@
   </div>
 </div>
 
+<!-- Scroll Down Arrow -->
+<div class="scroll-down" id="scrollArrow" onclick="scrollToAbout()">
+  <i class="fas fa-chevron-down"></i>
+</div>
+
 <style>
 /* Dark Mode Styles: Use different shades for outline and icons */
 @media (prefers-color-scheme: dark) {
@@ -155,4 +160,106 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.hidden-section {
+  opacity: 0;
+  transform: translateY(50px); /* Start below the screen */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  visibility: hidden;
+  pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.visible-section {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+/* Scroll Down Arrow */
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    cursor: pointer;
+    animation: bounce 1.5s infinite;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Hide when About section is in view */
+.scroll-down.hidden {
+    opacity: 0;
+    transform: translateY(20px) translateX(-50%);
+    pointer-events: none;
+}
+
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const aboutSection = document.getElementById("about");
+  let lastScrollY = window.scrollY;
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const triggerHeight = window.innerHeight * 0.5; // Trigger when scrolled halfway
+
+    if (currentScrollY > triggerHeight && currentScrollY > lastScrollY) {
+      // Scroll down: Show About section
+      aboutSection.classList.add("visible-section");
+    } else if (currentScrollY < lastScrollY && currentScrollY < triggerHeight) {
+      // Scroll up: Hide About section
+      aboutSection.classList.remove("visible-section");
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
+  window.addEventListener("scroll", handleScroll);
+});
+
+function scrollToAbout() {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+// Ensure the arrow disappears exactly when About appears
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollArrow = document.getElementById("scrollArrow");
+    const aboutSection = document.getElementById("about");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    scrollArrow.classList.add("hidden"); // Hide when About is visible
+                } else {
+                    scrollArrow.classList.remove("hidden"); // Show when About is not in view
+                }
+            });
+        },
+        { threshold: 0.1 } // Triggers when 10% of the About section is in view
+    );
+
+    observer.observe(aboutSection);
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollArrow = document.getElementById("scrollArrow");
+    const descriptionText = document.querySelector(".text-muted"); // Ensure this class matches your description
+    if (descriptionText) {
+        const computedStyle = window.getComputedStyle(descriptionText);
+        scrollArrow.style.color = computedStyle.color;
+    }
+});
+
+
+</script>
+  
