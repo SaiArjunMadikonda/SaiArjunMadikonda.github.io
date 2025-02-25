@@ -268,6 +268,17 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
     margin-bottom: 5px;
 }
 
+@media (prefers-color-scheme: dark) {
+    /* Increase brightness or invert colors for better visibility */
+    img[alt="ROS/ROS2"],
+    img[alt="Photoshop"],
+    img[alt="Pandas"],
+    img[alt="Bash"],
+    img[alt="ANSYS"] {
+        filter: brightness(1.8) contrast(1.2); /* Adjust brightness & contrast */
+    }
+}
+
 .tech-name {
     position: absolute;
     bottom: -20px;
@@ -289,18 +300,6 @@ I specialize in robotics, artificial intelligence, and autonomous systems. My re
     margin: 0 auto;
     line-height: 1.6;
 }
-
-@media (prefers-color-scheme: dark) {
-    /* Increase brightness or invert colors for better visibility */
-    img[alt="ROS/ROS2"],
-    img[alt="Photoshop"],
-    img[alt="Pandas"],
-    img[alt="Bash"],
-    img[alt="ANSYS"] {
-        filter: brightness(1.8) contrast(1.2); /* Adjust brightness & contrast */
-    }
-}
-
 
 @media (prefers-color-scheme: dark) {
     .tech-category h2 {

@@ -13,20 +13,146 @@
 
     <p class="text-muted wow animated slideInUp mt-4" data-wow-delay=".15s">{{ site.description }}</p>
 
-    <!-- Social Media Buttons -->
-    <div class="mt-4 d-flex justify-content-center" style="gap: 2rem;">
-      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://drive.google.com/file/d/1-1vvEHxE5sBLgXJiJN1iqoJ_jYgGWL1U/view?usp=sharing" onmouseover="this.style.backgroundColor='#FF0000';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+    <!-- Social Media Buttons with Fade-in Effect -->
+    <div class="mt-4 d-flex justify-content-center wow animated slideInUp" data-wow-delay=".2s" style="gap: 2rem;">
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center resume wow animated slideInUp" 
+        data-wow-delay=".3s"
+        href="https://drive.google.com/file/d/1-1vvEHxE5sBLgXJiJN1iqoJ_jYgGWL1U/view?usp=sharing">
         <i class="fas fa-file-pdf" style="margin-right: 8px;"></i>
-        Resume
+        <span>Resume</span>
       </a>
-      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://github.com/vishnumandala" onmouseover="this.style.backgroundColor='#333333';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center github wow animated slideInUp" 
+        data-wow-delay=".4s"
+        href="https://github.com/vishnumandala">
         <i class="fab fa-github" style="margin-right: 8px;"></i>
-        GitHub
+        <span>GitHub</span>
       </a>
-      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center" href="https://www.linkedin.com/in/vishnumandala" onmouseover="this.style.backgroundColor='#0077B5';this.style.color='white'" onmouseout="this.style.backgroundColor='';this.style.color=''">
+      <a class="btn btn-outline-dark btn-lg shadow-sm d-flex align-items-center linkedin wow animated slideInUp" 
+        data-wow-delay=".5s"
+        href="https://www.linkedin.com/in/vishnumandala">
         <i class="fab fa-linkedin-in" style="margin-right: 8px;"></i>
-        LinkedIn
+        <span>LinkedIn</span>
       </a>
     </div>
   </div>
 </div>
+
+<style>
+/* Dark Mode Styles: Use different shades for outline and icons */
+@media (prefers-color-scheme: dark) {
+  /* Resume (PDF - Darker Red in Dark Mode) */
+  .btn-outline-dark.resume {
+    border-color: #B20000 !important; /* Darker Red */
+    color: #B20000 !important;
+  }
+
+  .btn-outline-dark.resume i {
+    color: #B20000 !important;
+  }
+
+  .btn-outline-dark.resume:hover {
+    background-color: #FF0000 !important; /* Brighter Red on hover */
+    color: white !important;
+    border-color: transparent !important;
+  }
+
+  .btn-outline-dark.resume:hover i {
+    color: white !important;
+  }
+
+  /* GitHub (Lighter Gray in Dark Mode) */
+  .btn-outline-dark.github {
+    border-color: #888888 !important; /* Lighter Gray */
+    color: #888888 !important;
+  }
+
+  .btn-outline-dark.github i {
+    color: #888888 !important;
+  }
+
+  .btn-outline-dark.github:hover {
+    background-color: #333333 !important; /* Dark Gray on hover */
+    color: white !important;
+    border-color: transparent !important;
+  }
+
+  .btn-outline-dark.github:hover i {
+    color: white !important;
+  }
+
+  /* LinkedIn (Same Blue in Dark Mode) */
+  .btn-outline-dark.linkedin {
+    border-color: #0077B5 !important;
+    color: #0077B5 !important;
+  }
+
+  .btn-outline-dark.linkedin i {
+    color: #0077B5 !important;
+  }
+
+  .btn-outline-dark.linkedin:hover {
+    background-color: #0077B5 !important;
+    color: white !important;
+    border-color: transparent !important;
+  }
+
+  .btn-outline-dark.linkedin:hover i {
+    color: white !important;
+  }
+}
+
+/* Mobile Styles: Show only icons, remove text, and reduce spacing */
+@media (max-width: 768px) {
+  .d-flex.justify-content-center {
+    gap: 0.5rem !important; /* Reduce space between buttons */
+  }
+
+  .btn-outline-dark {
+    width: 60px !important; /* Fixed size for consistency */
+    height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: center !important;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Fully remove text on mobile */
+  .btn-outline-dark {
+    font-size: 0 !important;
+  }
+
+  /* Ensure only the icon remains */
+  .btn-outline-dark i + * {
+    display: none !important;
+  }
+
+  /* Absolutely center the icon */
+  .btn-outline-dark i {
+    font-size: 1.8rem !important; /* Adjust icon size */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Add spacing between icon and text on larger screens */
+@media (min-width: 769px) {
+  .btn-outline-dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px !important; /* Adds space between icon and text */
+    padding: 8px 16px !important; /* Ensures proper button padding */
+  }
+}
+
+</style>
