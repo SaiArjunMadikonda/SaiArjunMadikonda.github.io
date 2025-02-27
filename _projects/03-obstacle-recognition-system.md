@@ -30,7 +30,7 @@ description: Autonomous differential drive robot with real-time pick-and-place c
 </div>
 
 <p class="post-metadata text-muted">
-   <span class="d-inline-block">July 25, 2023</span> &#8226; 
+   <span class="d-inline-block">May 25, 2023</span> &#8226; 
    <span class="tags">
       {% for tag in page.tools %}
       <span class="tag badge badge-pill text-primary border border-primary">{{ tag }}</span>
@@ -43,91 +43,59 @@ description: Autonomous differential drive robot with real-time pick-and-place c
          alt="Obstacle Recognition Demo"
          style="width: 90%; max-width: 1200px; margin: auto;"
     />
-    <p style="margin-top: 10px; font-style: italic; color: #666;">Real-time Obstacle Detection and Recognition System Demo</p>
 </div>
 
 ## Project Overview
 
-A comprehensive autonomous navigation system integrating YOLOv8-based object detection with SLAM for robust obstacle recognition and avoidance. The system utilizes multi-sensor fusion and embedded processing on a Raspberry Pi platform to achieve real-time performance in dynamic environments.
+This project develops a real-time obstacle detection and recognition system for a mobile robot using a customized YOLOv8 model. The system is designed to process live video feeds, detect obstacles (such as pedestrians, vehicles, or other objects), and classify them accurately. By leveraging the speed and accuracy of YOLOv8 in Python, the system enhances robot autonomy and safety, enabling the robot to avoid collisions and understand its surroundings effectively. This approach is especially useful in dynamic, real-world environments where quick and accurate object detection is critical.
 
 ## Key Features
 
-- **Custom YOLOv8 Implementation**: Optimized for embedded systems with 92% detection accuracy
-- **Multi-sensor Fusion**: Integrated LIDAR, camera, and IMU data for robust perception
-- **Real-time Processing**: Achieved 30 FPS detection rate on Raspberry Pi
-- **Autonomous Navigation**: Implemented dynamic path planning with obstacle avoidance
-- **Pick-and-Place Capabilities**: Precise object manipulation with 95% success rate
+- **Customized YOLOv8 Model:** The project adapts the latest YOLOv8 architecture for obstacle detection. The model is fine-tuned on a custom dataset specific to the robot's operational environment, ensuring high accuracy for the classes of interest.
+- **Real-Time Detection:** Leveraging the efficiency of YOLOv8, the system processes video frames in real time (approximately 20 FPS), drawing bounding boxes and class labels over detected obstacles with minimal latency.
+- **Obstacle Recognition & Classification:** Beyond mere detection, the system classifies obstacles into categories (e.g., person, chair, vehicle), enabling the robot to make informed decisions—such as slowing down for pedestrians while navigating around static objects.
+- **Distance Estimation:** Although YOLOv8 does not directly provide depth, the system incorporates simple geometric calculations based on bounding box sizes and camera calibration data to approximate distances, enhancing the robot’s ability to plan avoidance maneuvers.
+- **Python-based Implementation:** The entire pipeline is implemented in Python using OpenCV for image processing and PyTorch for running YOLOv8. This makes it easily integrable into existing Python-based robotics systems.
+- **User-Friendly Integration:** The design focuses on simplicity and flexibility. The code is modular, enabling quick adaptation or extension of the detection system without the need for specialized hardware like Jetson or middleware like ROS.
 
-## Technical Architecture
+## Development Process & Challenges
 
-### Object Detection Pipeline
-```python
-class ObjectDetectionSystem:
-    def __init__(self):
-        self.model = YOLO('custom_yolov8.pt')
-        self.tracker = BYTETracker()
-        
-    def process_frame(self, frame):
-        # Object detection
-        detections = self.model(frame)
-        
-        # Object tracking
-        tracked_objects = self.tracker.update(
-            detections,
-            frame.shape[:2],
-            frame.shape[:2]
-        )
-        
-        # Multi-sensor fusion
-        fused_data = self.sensor_fusion(tracked_objects)
-        return fused_data
+1. **Dataset Preparation:** A custom dataset was created by collecting images from the robot’s environment and manually annotating them using tools like LabelImg. Data augmentation (rotations, brightness adjustments) was employed to increase robustness.
+2. **Model Customization:** We fine-tuned YOLOv8 on the custom dataset. A key challenge was ensuring the model learned to differentiate between similar objects (e.g., distinguishing a person from a similarly shaped inanimate object). Techniques such as careful annotation and balanced class weighting helped achieve high precision.
+3. **Real-Time Performance:** Ensuring that the detection ran at around 20 FPS on standard hardware required code optimization. We streamlined image preprocessing using OpenCV and optimized the YOLOv8 inference pipeline with PyTorch to reduce latency.
+4. **Integration of Distance Estimation:** Since YOLOv8 does not provide depth information, a simple geometric method was implemented to estimate object distance using known camera parameters and bounding box dimensions. This added a layer of intelligence for dynamic obstacle avoidance.
+5. **Robustness Under Varied Conditions:** The model was tested under different lighting conditions and backgrounds. Initial tests showed false positives in shadowed areas; refining the training dataset and adjusting confidence thresholds mitigated these issues.
 
-    def sensor_fusion(self, detections):
-        # Combine LIDAR and camera data
-        fused_objects = []
-        for det in detections:
-            lidar_data = self.get_lidar_depth(det.bbox)
-            imu_data = self.get_imu_orientation()
-            fused_objects.append(self.fuse_measurements(det, lidar_data, imu_data))
-        return fused_objects
-```
+## Technologies Used
 
-## Implementation Details
+- **Programming Language:** Python
+- **YOLOv8:** Utilized for state-of-the-art object detection and recognition.
+- **OpenCV:** For image handling, preprocessing, and drawing bounding boxes.
+- **PyTorch:** To run and fine-tune the YOLOv8 model.
+- **Data Augmentation Tools:** To expand the custom dataset and improve model robustness.
+- **Visualization Libraries:** Matplotlib and OpenCV for real-time visual feedback during development and testing.
 
-### Navigation Control
-```python
-class NavigationController:
-    def __init__(self):
-        self.slam = SLAM()
-        self.path_planner = PathPlanner()
-        
-    def navigate(self, goal_position):
-        # Update SLAM map
-        current_pose = self.slam.update()
-        
-        # Plan path considering detected obstacles
-        path = self.path_planner.plan(
-            current_pose,
-            goal_position,
-            self.detected_obstacles
-        )
-        
-        # Execute trajectory
-        self.execute_path(path)
-```
+## Achievements & Metrics
+
+- **High Detection Accuracy:** The fine-tuned YOLOv8 model achieves around 92% mean Average Precision (mAP) on the test set, ensuring that most obstacles are detected and classified correctly.
+- **Real-Time Processing:** The optimized pipeline runs at approximately 20 FPS, ensuring the robot can react promptly to dynamic obstacles.
+- **Robust Classification:** The system consistently differentiates between critical classes (e.g., distinguishing a person from inanimate objects) even under varying lighting conditions.
+- **Effective Distance Estimation:** The incorporated geometric approach provides reasonable distance approximations, enabling better obstacle avoidance planning.
+- **Enhanced Navigation Safety:** In simulation and live tests, the robot successfully avoids collisions in scenarios where traditional sensor-based methods might fail, demonstrating the system’s practical benefits.
+
+## Robot Model
+
+![Robot Model](https://raw.githubusercontent.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/main/Bot.jpg "Robot Model")
+
+## Confusion Matrix
+
+![Confusion Matrix](https://raw.githubusercontent.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/main/Confusion%20matrix.jpg "Confusion Matrix")
 
 ## Performance Metrics
 
-### System Performance
-- **Detection Accuracy**: 92% on custom dataset
-- **Processing Speed**: 30 FPS on Raspberry Pi 4
-- **Navigation Success**: 95% in cluttered environments
-- **Pick Success Rate**: 95% for known objects
+![Performance Metrics]( https://raw.githubusercontent.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/main/Results.jpg "Performance Metrics")
 
-## Future Development
+## Resources
 
-Potential areas for future enhancement include:
-- Integration with semantic mapping
-- Advanced manipulation capabilities
-- Multi-robot coordination
-- Online learning for new objects
+- <a href="https://github.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/blob/main/annotated-Final_project_group31.pdf" class="md-link">Project Report</a>
+- <a href="https://github.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/blob/main/Codes/Obstacle%20Detection.ipynb" class="md-link">Jupyter Notebook</a>

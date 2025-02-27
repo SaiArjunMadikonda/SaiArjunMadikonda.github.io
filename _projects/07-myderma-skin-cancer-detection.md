@@ -30,7 +30,7 @@ description: Mobile application using ensemble deep learning models for real-tim
 </div>
 
 <p class="post-metadata text-muted">
-   <span class="d-inline-block">June 25, 2023</span> &#8226; 
+   <span class="d-inline-block">December 15, 2023</span> &#8226; 
    <span class="tags">
       {% for tag in page.tools %}
       <span class="tag badge badge-pill text-primary border border-primary">{{ tag }}</span>
@@ -43,89 +43,72 @@ description: Mobile application using ensemble deep learning models for real-tim
          alt="MyDerma App Demo"
          style="width: 90%; max-width: 1200px; margin: auto;"
     />
-    <p style="margin-top: 10px; font-style: italic; color: #666;">MyDerma Mobile Application Demo</p>
 </div>
 
 ## Project Overview
+MyDerma is a mobile application designed to deliver early, accurate skin cancer detection through a hybrid deep learning approach. By leveraging an ensemble of state-of-the-art Convolutional Neural Networks (CNNs) – namely InceptionV3, DenseNet201, MobileNetV2, and ResNet50 – the system analyzes dermatoscopic images from the HAM10000 dataset. The project not only aims to achieve high classification accuracy (with ensemble test accuracy reaching **97.15%** and validation accuracy up to **98.46%**) but also to provide a non-invasive diagnostic tool accessible via mobile devices.
 
-A mobile application leveraging ensemble deep learning models for real-time skin cancer detection. The system combines multiple state-of-the-art architectures (ResNet-50, InceptionV3, DenseNet201) optimized for mobile deployment, achieving high accuracy while maintaining real-time performance.
+## Dataset Overview and Preprocessing
+The system is built upon the HAM10000 dataset, a large collection of 10,000 dermatoscopic images representing seven different skin lesion types.
 
-## Key Features
+- **Image Dimensions:** 450 x 600 pixels in RGB.
+- **Data Diversity:** Images cover various skin lesion types such as melanoma, basal cell carcinoma, and benign keratosis.
+- **Preprocessing:**  
+  - **Resizing:** Images are resized to model-specific dimensions (e.g., 256x192 for InceptionV3 and DenseNet201, 224x224 for MobileNetV2 and ResNet50, and 64x64 for a custom CNN).  
+  - **Augmentation:** Techniques such as rotation, zooming, shifting, shearing, horizontal flipping, and brightness adjustments are applied to combat class imbalance and enhance model generalization.
+- **Normalization:** Images are normalized (zero mean, unit variance) to optimize training.
 
-- **Ensemble Architecture**: Combined ResNet-50, InceptionV3, and DenseNet201
-- **Mobile Optimization**: TensorFlow Lite deployment with quantization
-- **Real-time Processing**: Under 2 seconds inference time
-- **High Accuracy**: 97.15% detection accuracy
-- **User-friendly Interface**: Intuitive Flutter-based UI
+## Model Architecture and Ensemble Approach
+To tackle the challenges in skin lesion classification, the project fine-tunes several pre-trained deep learning models:
 
-## Technical Architecture
+- **InceptionV3:** Utilized for its efficient computation and multi-scale feature extraction.
+- **DenseNet201:** Chosen for its densely connected layers, which improve feature propagation.
+- **MobileNetV2:** Optimized for mobile deployment, balancing performance with computational efficiency.
+- **ResNet50:** Leveraging residual learning for deeper network training.
 
-### Model Architecture
-```python
-class EnsembleModel(tf.keras.Model):
-    def __init__(self):
-        super(EnsembleModel, self).__init__()
-        self.resnet = ResNet50(weights='imagenet', include_top=False)
-        self.inception = InceptionV3(weights='imagenet', include_top=False)
-        self.densenet = DenseNet201(weights='imagenet', include_top=False)
-        
-        # Custom layers
-        self.global_pool = GlobalAveragePooling2D()
-        self.dropout = Dropout(0.5)
-        self.classifier = Dense(7, activation='softmax')
-        
-    def call(self, inputs):
-        # Process through each model
-        x1 = self.resnet(inputs)
-        x2 = self.inception(inputs)
-        x3 = self.densenet(inputs)
-        
-        # Combine features
-        x = Concatenate()([
-            self.global_pool(x1),
-            self.global_pool(x2),
-            self.global_pool(x3)
-        ])
-        
-        x = self.dropout(x)
-        return self.classifier(x)
-```
+These models are integrated into an **ensemble architecture**:
+- **Feature Extraction:** Each model processes the input image, and global average pooling is applied to obtain feature vectors.
+- **Concatenation:** The pooled features are concatenated to form a comprehensive representation.
+- **Classification:** A dense layer (512 units with ReLU activation) followed by dropout (rate=0.5) and a final softmax layer (7 units) outputs the probabilities across the lesion classes.
 
-## Implementation Details
+## Experimental Results
+A series of experiments were conducted to evaluate the performance of each model and the ensemble approach. Key performance highlights include:
 
-### Mobile Optimization
-```python
-def optimize_for_mobile(model):
-    # Convert to TFLite
-    converter = tf.lite.TFLiteConverter.from_keras_model(model)
-    
-    # Enable optimizations
-    converter.optimizations = [tf.lite.Optimize.DEFAULT]
-    converter.target_spec.supported_types = [tf.float16]
-    
-    # Quantization
-    converter.target_spec.supported_ops = [
-        tf.lite.OpsSet.TFLITE_BUILTINS,
-        tf.lite.OpsSet.SELECT_TF_OPS
-    ]
-    
-    # Convert and save
-    tflite_model = converter.convert()
-    return tflite_model
-```
+- **Individual Model Results:**  
+  - *Fine-tuned DenseNet201:* Test accuracy of 84.93% (up to 93.72% when retrained)  
+  - *Retrained ResNet50:* Achieved a test accuracy of 96.84%
+- **Ensemble Performance:**  
+  - **Test Accuracy:** 97.15%  
+  - **Validation Accuracy:** 98.46%  
+  - **F1-Scores:** Up to 0.99 for critical classes (e.g., melanoma)
 
-## Performance Metrics
+The experiments also included ablation studies and hyperparameter tuning (learning rate adjustments, dropout, and data augmentation) to optimize model performance while addressing issues like overfitting and class imbalance (using SMOTE).
 
-### System Performance
-- **Detection Accuracy**: 97.15% on test set
-- **Inference Time**: < 2 seconds on mobile
-- **Model Size**: Reduced from 300MB to 50MB
-- **False Positive Rate**: < 2%
+## Mobile Application: MyDerma
+The **MyDerma** mobile application integrates the ensemble model into an end-to-end diagnostic tool:
 
-## Future Development
+- **Front-end:**  
+  - Developed using Android Studio (2023 Hedgehog) and Flutter (3.19.0) to create an intuitive user interface.
+  - Facilitates image selection, pre-processing (resizing and normalization), and seamless user interaction.
+  
+- **Back-end:**  
+  - Powered by TensorFlow Lite, enabling efficient on-device inference without reliance on cloud processing.
+  - Converts model outputs into user-friendly diagnostic predictions, ensuring real-time feedback (typically under 2 seconds per image).
 
-Potential areas for future enhancement include:
-- Integration with medical databases
-- Real-time lesion segmentation
-- Automated report generation
-- Telemedicine integration 
+## Limitations
+Despite impressive performance, the study identifies several limitations:
+- **Data Quality and Diversity:** Reliance on the HAM10000 dataset may not capture all variations of skin lesions.
+- **Mobile Deployment Challenges:** Variability in image quality from mobile cameras and environmental conditions can affect accuracy.
+- **Computational Constraints:** Limited training epochs (20–25) due to resource constraints may impact model convergence.
+- **SMOTE Overhead:** While mitigating class imbalance, SMOTE increased the dataset size significantly, affecting training duration.
+
+## Conclusion & Future Work
+The project successfully demonstrates a robust mobile solution for skin cancer detection by leveraging a hybrid ensemble of deep learning models. The high diagnostic accuracies achieved indicate the transformative potential of this approach in dermatological screening. Future directions include:
+- **Enhanced Generalization:** Expanding datasets to include a broader spectrum of skin lesions.
+- **Integration of Patient Data:** Incorporating demographic and clinical data for personalized diagnostics.
+- **User Interface Enhancements:** Refining the mobile application for improved usability.
+- **Clinical Trials:** Conducting real-world trials to further validate the system's efficacy.
+
+## Resources
+- <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/DBW86T" class="md-link">Dataset</a>
+- <a href="https://github.com/vishnumandala/MyDerma-Mobile-Deep-Learning-for-Real-Time-Skin-Cancer-Detection/blob/main/809K_Finalproject_report.pdf" class="md-link">Project Report</a>

@@ -1,8 +1,8 @@
 ---
 name: Development of an Autonomous Robot with Advanced Control Systems
-tools: [SolidWorks, ANSYS, Arduino, PID, PCB Design, Machining, C++]
+tools: [Raspberry Pi, OpenCV, Python, SciPy, NumPy, PID]
 image: https://raw.githubusercontent.com/vishnumandala/Development-of-an-Autonomous-Robot/main/results/demo.gif
-description: Designed and implemented a 2-DOF autonomous robot with custom PCB design, PID control system, and real-time trajectory optimization, achieving 95% accuracy in autonomous navigation and task execution.
+description: Autonomous robot that integrates a mobile platform with a manipulator arm to autonomously navigate, detect, and transport construction blocks in simulated environments.
 ---
 
 <a href="{{ site.baseurl }}/projects/" class="back-button" style="display: inline-block; margin-bottom: 20px; text-decoration: none; color: inherit;">
@@ -30,7 +30,7 @@ description: Designed and implemented a 2-DOF autonomous robot with custom PCB d
 </div>
 
 <p class="post-metadata text-muted">
-   <span class="d-inline-block">June 5, 2023</span> &#8226; 
+   <span class="d-inline-block">May 5, 2024</span> &#8226; 
    <span class="tags">
       {% for tag in page.tools %}
       <span class="tag badge badge-pill text-primary border border-primary">{{ tag }}</span>
@@ -43,107 +43,110 @@ description: Designed and implemented a 2-DOF autonomous robot with custom PCB d
          alt="Autonomous Robot Demo"
          style="width: 90%; max-width: 1200px; margin: auto;"
     />
-    <p style="margin-top: 10px; font-style: italic; color: #666;">Autonomous Robot System Demo</p>
 </div>
 
 ## Project Overview
 
-A comprehensive robotics project featuring a 2-DOF autonomous robot with advanced control systems. The project encompasses mechanical design, custom PCB development, and implementation of sophisticated control algorithms for precise navigation and task execution.
+This project focuses on the design and implementation of an autonomous mobile manipulator robot capable of performing complex tasks in dynamic environments. The robot is engineered to navigate through industrial-like settings, detect and differentiate construction blocks, and transport them to designated locations, all while avoiding obstacles and optimizing task efficiency.
 
-## Key Features
+## Features
 
-- **Custom Hardware Design**: SolidWorks-based mechanical system
-- **PCB Development**: Custom electronics with Arduino integration
-- **Control System**: Advanced PID implementation
-- **Trajectory Planning**: Real-time optimization
-- **Task Execution**: 95% accuracy in autonomous operation
+- **Integrated Design:** Combines a mobile platform with a manipulator arm to handle both navigation and object manipulation.
+- **Autonomous Navigation:** Uses landmark-based coordinates and sensor fusion for robust path planning and real-time obstacle avoidance.
+- **Advanced Object Interaction:** Integrates vision-based detection (via OpenCV) and sonar sensors for accurate object recognition and interaction.
+- **Optimized Task Execution:** Implements efficient task planning algorithms to reduce cycle times and improve overall performance.
 
-## Technical Architecture
+## Project Structure
 
-### Control System Design
-```cpp
-class RobotController {
-private:
-    // PID parameters
-    struct PIDParams {
-        float Kp, Ki, Kd;
-        float integral, prev_error;
-        float output_min, output_max;
-    };
-    
-    PIDParams x_axis_pid{1.2, 0.1, 0.05};
-    PIDParams y_axis_pid{1.0, 0.08, 0.03};
-    
-public:
-    float computePID(PIDParams& pid, float setpoint, float current) {
-        float error = setpoint - current;
-        
-        // Proportional term
-        float P = pid.Kp * error;
-        
-        // Integral term
-        pid.integral += error * dt;
-        float I = pid.Ki * pid.integral;
-        
-        // Derivative term
-        float derivative = (error - pid.prev_error) / dt;
-        float D = pid.Kd * derivative;
-        
-        // Calculate total output
-        float output = P + I + D;
-        
-        // Apply output limits
-        output = constrain(output, pid.output_min, pid.output_max);
-        
-        // Store error for next iteration
-        pid.prev_error = error;
-        
-        return output;
-    }
-};
-```
+### Robot Construction
 
-## Implementation Details
+- **Mobile Platform:**  
+  - Equipped with motors, wheels, and motor drivers for precise locomotion.
+  - Integrated with sonar sensors for distance measurement and obstacle detection.
+  
+- **Manipulator Arm:**  
+  - Features a servo gripper assembly to handle objects securely.
+  - Designed for reliable pick-and-place operations in dynamic settings.
 
-### Motion Planning
-```cpp
-class TrajectoryPlanner {
-public:
-    vector<Point> generateTrajectory(Point start, Point end) {
-        vector<Point> trajectory;
-        
-        // Calculate intermediate points
-        float dx = (end.x - start.x) / steps;
-        float dy = (end.y - start.y) / steps;
-        
-        // Generate smooth trajectory
-        for(int i = 0; i <= steps; i++) {
-            Point p;
-            p.x = start.x + dx * i;
-            p.y = start.y + dy * i;
-            
-            // Apply acceleration limits
-            applyDynamicConstraints(p);
-            trajectory.push_back(p);
-        }
-        
-        return trajectory;
-    }
-};
-```
+- **Embedded System:**  
+  - Powered by a Raspberry Pi, which manages sensor data, vision processing, and control algorithms.
+  - Utilizes a camera for real-time object detection and environmental mapping.
+
+### Control Systems and Code Architecture
+
+- **Control Algorithms:**  
+  - Developed based on kinematic and dynamic models to ensure precise coordination between the mobile base and manipulator arm.
+  - Implements feedback loops using sensor data to adjust motion trajectories in real time.
+
+- **Code Overview:**  
+  - The primary control logic is contained in `test.py`, which orchestrates sensor integration, image processing, and motor control.
+  - **Key Functions in `test.py`:**
+    - **Sensor Data Acquisition:**  
+      Retrieves inputs from sonar sensors and camera. This data is processed to detect obstacles and identify target objects.
+    - **Vision Processing:**  
+      Utilizes OpenCV for real-time image analysis to locate construction blocks. Algorithms filter and process frames to ensure reliable object recognition.
+    - **Motion Control:**  
+      Uses Python libraries such as RPi.GPIO to send commands to the motors based on the control algorithm’s output.
+    - **Path Planning:**  
+      Applies landmark-based navigation techniques and optimization routines from SciPy and NumPy to compute efficient paths and adjust robot trajectory dynamically.
+
+## Methodology
+
+- **Hardware Integration:**  
+  The system integrates a mobile base, a manipulator arm, and multiple sensors (camera and sonar) into a unified platform. Emphasis was placed on ensuring reliable sensor calibration and seamless hardware-software integration.
+
+- **Control Algorithm Design:**  
+  Control algorithms were designed to blend kinematic modeling with real-time sensor feedback, enabling the robot to dynamically adjust its path and manipulation strategy.
+
+- **Path Planning & Task Optimization:**  
+  The robot uses a landmark-based navigation system to calculate efficient paths while dynamically avoiding obstacles. Optimization routines minimize task cycle time and improve operational accuracy.
+
+- **Object Detection & Interaction:**  
+  OpenCV is employed for image processing, which, combined with sonar data, allows the robot to accurately detect and interact with construction blocks under varying lighting and environmental conditions.
+
+## Key Challenges and Solutions
+
+- **Part Recognition:**  
+  Overcame challenges in object recognition by fine-tuning image processing algorithms and integrating complementary sensor data.
+  
+- **Sensor Calibration:**  
+  Implemented rigorous calibration routines for sonar sensors and the camera to ensure accurate and reliable measurements.
+  
+- **Environmental Adaptation:**  
+  Developed robust control strategies to maintain performance in dynamic environments with fluctuating lighting and obstacles.
 
 ## Performance Metrics
 
-### System Performance
-- **Position Accuracy**: ±0.5mm
-- **Task Success Rate**: 95%
-- **Battery Life**: 4 hours continuous operation
-- **Control Response**: < 10ms latency
+- **Task Success Rate:**  
+  Achieved a high success rate in locating and transporting construction blocks.
+  
+- **Navigation Accuracy:**  
+  Maintained precise control with minimal deviation from planned trajectories.
+  
+- **Cycle Time Reduction:**  
+  Optimized control algorithms led to a significant decrease in task cycle times.
+  
+- **Obstacle Avoidance:**  
+  Demonstrated reliable real-time obstacle detection and avoidance in dynamic conditions.
 
-## Future Development
+## Visuals
 
-Potential areas for future enhancement include:
-- Advanced path planning algorithms
-- Machine learning integration
-- Sensor fusion implementation
-- Remote monitoring capabilities 
+### Robot Model
+
+{% capture carousel_images %}
+https://raw.githubusercontent.com/vishnumandala/Development-of-an-Autonomous-Robot/main/1.png
+https://raw.githubusercontent.com/vishnumandala/Development-of-an-Autonomous-Robot/main/2.png
+{% endcapture %}
+
+{% include elements/carousel.html images=carousel_images %}
+
+### Simulation Arena
+![Simulation Arena](https://raw.githubusercontent.com/vishnumandala/Development-of-an-Autonomous-Robot/main/Arena%203D.png "Simulation Arena")
+
+## Progress Video
+
+{% include elements/video.html id="YP5O4i1IcPo" %}
+
+## Conclusion
+
+This project successfully demonstrates an autonomous mobile manipulator robot capable of complex navigation and precise object handling. By integrating advanced sensor fusion, real-time control algorithms, and efficient path planning, the robot is able to operate reliably in dynamic environments. Future enhancements could include refined machine learning-based object recognition and expanded autonomous decision-making capabilities.
