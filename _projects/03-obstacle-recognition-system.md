@@ -1,5 +1,5 @@
 ---
-name: Integrated Obstacle Recognition and Autonomous Navigation System
+name: Obstacle Recognition and Autonomous Navigation System
 tools: [SLAM, YOLOv8, OpenCV, Raspberry Pi, Embedded Control]
 image: https://raw.githubusercontent.com/vishnumandala/Obstacle-Detection-and-Recognition-System-using-Customized-YOLO-Algorithm-for-a-Mobile-Robot/main/results/demo.gif
 description: Autonomous differential drive robot with real-time pick-and-place capabilities, achieving 92% detection accuracy using multi-sensor fusion.
