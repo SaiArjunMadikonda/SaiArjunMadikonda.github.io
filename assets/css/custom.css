@@ -839,6 +839,7 @@ small[id="attribution"] {
   align-items: center;
   gap: 0.5rem;
   position: relative;
+  justify-content: center;
   transition: transform 0.5s ease, filter 0.5s ease;
 }
 
@@ -862,7 +863,7 @@ small[id="attribution"] {
 .tech-item img[alt="ROS/ROS2"] {
   width: 60px;
   height: 60px;
-  margin-bottom: 5px;
+  object-fit: contain;
 }
 
 /* Glow Effect on Tech Icons */
