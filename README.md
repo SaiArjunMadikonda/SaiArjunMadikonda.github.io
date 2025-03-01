@@ -16,6 +16,8 @@ The website uses the **portfolYOU** theme—a beautiful portfolio Jekyll theme t
 ## Get in Touch
 
 I'm always excited to connect with fellow creatives and tech enthusiasts. Feel free to reach out via email or connect with me on social media.
+- Email: vishnum@terpmail.umd.edu
+- LinkedIn: https://www.linkedin.com/in/vishnumandala
 
 Thank you for visiting!
 
