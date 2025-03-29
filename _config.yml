@@ -1,10 +1,10 @@
 ### Site Settings ###
-title               : Vishnu Mandala
+title               : Sai Arjun Madikonda
 description         : >-
-                      Robotics Engineer | AI/ML Enthusiast |
-                      Graduate Student at University of Maryland, College Park
+                      DevOps Engineer • Data Analyst • System Reliability Engineer
 baseurl             : ""            
-repository          : vishnumandala/vishnumandala.github.io     
+url                 : "https://saiarjunmadikonda.github.io"
+repository          : SaiArjunMadikonda/SaiArjunMadikonda.github.io   
 remote_theme        : yousinix/portfolYOU
 open_new_tab        : true                    
 
@@ -24,17 +24,20 @@ nav_exclude:                                            # The following paths ar
 
 ### Author Info ###
 author:
-  name              : Vishnu Mandala
+  name              : Sai Arjun Madikonda
   image             : profile.jpg
   # behance           : your_username
 # dribbble          : your_username
-  email             : vishnum@terpmail.umd.edu
+  email             : saiarjunmadikonda.1999@gmail.com
   # facebook          : your_username
-  github            : vishnumandala
+  github            : SaiArjunMadikonda
 # gitlab            : your_username
 # instagram         : your_username
 # kaggle            : your_username
-  linkedin          : vishnumandala
+  linkedin          : saiarjunmadikonda
+  linkedin_url      : https://www.linkedin.com/in/saiarjunmadikonda/
+  location          : Woodstock, Maryland
+  phone             : 732-599-589
   # medium            : your_username
 # soundcloud        : your_username
 # spotify           : your_username

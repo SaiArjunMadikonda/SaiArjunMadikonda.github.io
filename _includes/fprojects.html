@@ -5,20 +5,13 @@
     </div>
     <div class="card-columns m-3 mt-4">
       {% for project in site.projects %}
-        {% if project.name contains 'RC-NFQ' or project.name contains 'ARIAC' or project.name contains 'RRT*' %}
-          {% assign project_type = "local" %}
-          {% assign project_id = project.name | slugify %}
-          {% assign project_img = project.image %}
-          {% assign project_name = project.name %}
-          {% assign project_desc = project.description %}
-          {% assign project_tools = project.tools %}
-          {% if project.external_url %}
-            {% assign project_url = project.external_url %}
-          {% else %}
-            {% assign project_url = project.url | relative_url %}
-          {% endif %}
-          {% include projects/project-card.html %}
-        {% endif %}
+        {% assign project_type = "local" %}
+        {% assign project_id = project.name | slugify %}
+        {% assign project_name = project.title %}
+        {% assign project_desc = project.content | strip_html | truncate: 150 %}
+        {% assign project_tools = project.tags %}
+        {% assign project_url = project.url | relative_url %}
+        {% include projects/project-card.html %}
       {% endfor %}
     </div>
     <p class="text-center">
