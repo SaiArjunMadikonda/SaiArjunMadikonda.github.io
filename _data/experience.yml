@@ -1,0 +1,35 @@
+- company: BNY Mellon
+  role: DevOps Engineer & Database Developer – SRE (ETF Project)
+  location: New York, USA
+  period: Jan 2025 – Present
+  responsibilities:
+    - Built and maintained GitLab CI/CD pipelines using custom `.gitlab-ci.yml` and Maven
+    - Automated deployments, scaling, and secret management with PowerShell scripts
+    - Integrated database deployments into CI workflows, ensuring rollback-safe schema changes
+    - Monitored internal services using proprietary App Engine, resolved runtime incidents
+    - Investigated logs with Splunk, built real-time alerting for operational awareness
+    - Coordinated across Dev, QA, and Ops teams for release consistency and traceability
+
+- company: BNY Mellon
+  role: Database Developer
+  location: New York, USA
+  period: Jun 2023 – Dec 2024
+  responsibilities:
+    - Administered SQL Server 2016–2019 across standalone and clustered environments
+    - Designed ETL pipelines using SSIS, BCP, and Bulk Insert for large-scale processing
+    - Implemented Transparent Data Encryption and granular access control policies
+    - Tuned slow-performing queries and managed index strategies using execution plans
+    - Used Rubrik for backups and recovery testing, SQL Sentry for performance tracking
+    - Led replication and log shipping in Always On configurations
+
+- company: Tech Mahindra
+  role: Database Developer
+  location: Hyderabad, India
+  period: Nov 2020 – Jun 2022
+  responsibilities:
+    - Led SQL Server migration PoCs and implemented DR solutions with Log Shipping
+    - Developed custom VBScript monitors for daily production health checks
+    - Configured replication in Always On clusters; supported transactional and snapshot modes
+    - Implemented CDC and CT to enable change tracking and downstream auditing
+    - Maintained backup/recovery plans and scheduled patch rollouts
+    - Supported global deployment cycles using Trello and ServiceNow for tracking 

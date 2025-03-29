@@ -1,0 +1,14 @@
+<div class="card wow animated fadeInUp" data-wow-delay=".15s">
+  <div class="card-body">
+    <h5 class="card-title">{{ project_name }}</h5>
+    <p class="card-text">{{ project_desc }}</p>
+    {% if project_tools %}
+    <div class="tech-stack">
+      {% for tool in project_tools %}
+      <span class="badge badge-pill badge-dark">{{ tool }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <a href="{{ project_url }}" class="btn btn-outline-dark btn-sm mt-3">View Project</a>
+  </div>
+</div> 
